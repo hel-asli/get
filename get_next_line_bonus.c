@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:19:52 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/22 04:32:16 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:43:13 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*read_from_file(char *buffer, int fd)
 		return (NULL);
 	str = malloc((size_t)BUFFER_SIZE + 1);
 	if (!str)
-		return (NULL);
+		return (free(buffer), buffer = NULL, NULL);
 	n = 0;
 	while (!ft_strchr(buffer))
 	{
