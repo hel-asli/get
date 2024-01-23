@@ -6,13 +6,13 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 22:09:31 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/22 03:57:11 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/23 03:20:17 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_from_file(char *buffer, int fd)
+static char	*read_file(char *buffer, int fd)
 {
 	char	*str;
 	int		n;
@@ -39,7 +39,7 @@ char	*read_from_file(char *buffer, int fd)
 	return (free(str), str = NULL, buffer);
 }
 
-char	*read_line(char *buffer)
+static char	*read_line(char *buffer)
 {
 	char	*line;
 	int		len;
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 		return (free(buffer), buffer = NULL, NULL);
 	if (buffer == NULL)
 		buffer = ft_strdup("");
-	buffer = read_from_file(buffer, fd);
+	buffer = read_file(buffer, fd);
 	if (!buffer)
 		return (NULL);
 	if (!*buffer)

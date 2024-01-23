@@ -6,13 +6,13 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:19:52 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/22 15:43:13 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/23 03:21:48 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*read_from_file(char *buffer, int fd)
+static char	*read_file(char *buffer, int fd)
 {
 	char	*str;
 	int		n;
@@ -39,7 +39,7 @@ char	*read_from_file(char *buffer, int fd)
 	return (free(str), str = NULL, buffer);
 }
 
-char	*read_line(char *buffer)
+static char	*read_line(char *buffer)
 {
 	char	*line;
 	int		len;
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
 	if (buffer[fd] == NULL)
 		buffer[fd] = ft_strdup("");
-	buffer[fd] = read_from_file(buffer[fd], fd);
+	buffer[fd] = read_file(buffer[fd], fd);
 	if (!buffer[fd])
 		return (NULL);
 	if (!*buffer[fd])
