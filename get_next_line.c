@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 22:09:31 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/23 03:20:17 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/24 02:31:24 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,16 @@ static char	*read_file(char *buffer, int fd)
 	str = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!str)
 		return (free(buffer), buffer = NULL, NULL);
-	n = 0;
-	while (!ft_strchr(buffer))
+	n = 1;
+	while (!ft_strchr(buffer) && n != 0)
 	{
 		n = read(fd, str, BUFFER_SIZE);
-		if (n == 0)
-			break ;
-		if (n > 0)
-		{
-			str[n] = 0;
-			buffer = ft_strjoin(buffer, str);
-			if (!buffer)
-				return (free(buffer), buffer = NULL, NULL);
-		}
+		if (n < 0)	
+			return (free(buffer), buffer = NULL,  free(str), NULL);
+		str[n] = 0;
+		buffer = ft_strjoin(buffer, str);
+		if (!buffer)
+			return (free(buffer), buffer = NULL, NULL);
 	}
 	return (free(str), str = NULL, buffer);
 }
@@ -90,8 +87,8 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buffer, 0) < 0)
-		return (free(buffer), buffer = NULL, NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	if (buffer == NULL)
 		buffer = ft_strdup("");
 	buffer = read_file(buffer, fd);

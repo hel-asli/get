@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:43:45 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/22 04:10:39 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/24 02:26:34 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!ptr)
 		return (free(s1), s1 = NULL, free(s2), s2 = NULL, NULL);
 	i = 0;
-	while (i < ft_strlen(s1))
+	while (s1[i])
 	{
 		ptr[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (j < ft_strlen(s2))
+	while (s2[j])
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
 	free(s1);
