@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 22:40:17 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/01/24 02:09:41 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/01/24 03:43:59 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 size_t	ft_strlen(char *str)
 {
-	int	size;
+	size_t	size;
 
 	size = 0;
-	if (!str)
-		return (0);
+	// if (!str)
+	// 	return (0);
 	while (str[size])
 		size++;
 	return (size);
